@@ -55,16 +55,16 @@ connectDB();
 const allowedOrigins = [
   "http://localhost:5173",
   "http://127.0.0.1:5173",
+  "https://job-track-plum.vercel.app",
   process.env.CLIENT_URL,
 ].filter(Boolean);
 
-console.log("Allowed Origins:", allowedOrigins);
+console.log("✅ Allowed CORS Origins:", allowedOrigins);
 
 app.use(
   cors({
     origin: (origin, callback) => {
-      // Allow requests from Postman
-      // and server-to-server requests
+      // Allow Postman / server-to-server requests
       if (!origin) {
         return callback(null, true);
       }
@@ -73,12 +73,16 @@ app.use(
         return callback(null, true);
       }
 
-      console.log("Blocked CORS Origin:", origin);
+      console.log("❌ Blocked CORS Origin:", origin);
 
-      return callback(new Error("Not allowed by CORS"));
+      return callback(new Error(`Not allowed by CORS: ${origin}`));
     },
 
     credentials: true,
+
+    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
 
@@ -140,7 +144,7 @@ app.use("/api/jobs", jobRoutes);
 app.use("/api/resume", resumeRoutes);
 
 // ========================================
-// 404
+// 404 ROUTE
 // ========================================
 
 app.use(notFound);
@@ -160,5 +164,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 JobTrack server running on port ${PORT}`);
 
-  console.log(`🌐 http://localhost:${PORT}`);
+  console.log(`🌐 Server listening on port ${PORT}`);
 });
