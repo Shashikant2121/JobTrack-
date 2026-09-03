@@ -5,7 +5,7 @@ const JobForm = ({ initialData, onSubmit, onCancel }) => {
     company: "",
     position: "",
     location: "",
-    jobType: "Full Time",
+    jobType: "Full-time",
     workMode: "Remote",
     salary: "",
     status: "Applied",
@@ -28,7 +28,7 @@ const JobForm = ({ initialData, onSubmit, onCancel }) => {
         company: initialData.company || "",
         position: initialData.position || "",
         location: initialData.location || "",
-        jobType: initialData.jobType || "Full Time",
+        jobType: initialData.jobType || "Full-time",
         workMode: initialData.workMode || "Remote",
         salary: initialData.salary || "",
         status: initialData.status || "Applied",
@@ -193,8 +193,8 @@ const JobForm = ({ initialData, onSubmit, onCancel }) => {
               onChange={handleChange}
               className="w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
             >
-              <option value="Full Time">Full Time</option>
-              <option value="Part Time">Part Time</option>
+              <option value="Full-time">Full-time</option>
+              <option value="Part-time">Part-time</option>
               <option value="Internship">Internship</option>
               <option value="Contract">Contract</option>
               <option value="Freelance">Freelance</option>
